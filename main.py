@@ -14,7 +14,7 @@ async def get_temperature(city: str):
 HOT_THRESHOLD = 15
 
 from fastapi import FastAPI
-import asyncio
+import asyncio  # Для асинхронного программирования
 
 app = FastAPI()
 
@@ -57,7 +57,7 @@ async def subscribe(email: str):
     subscribers.add(email)
     return {"message": f"Подписка {email} добавлена"}
 
-
+# ПЕРЕКЛЮЧИЛСЯ НА DEV (на новую ветку)
 
 
 
