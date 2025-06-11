@@ -1,5 +1,5 @@
 
-import httpx
+import httpx  # httpx - библиотека взамен известной requests, в ней можно использовать async def (в requests - нет)
 
 OPENWEATHER_API_KEY = "99e09229e133cd3639c708fe595a930b"
 
