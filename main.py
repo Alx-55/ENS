@@ -14,7 +14,7 @@ OPENWEATHER_API_KEY = "99e09229e133cd3639c708fe595a930b"
 # Индивидуальные пороги температур по каждому городу
 CITY_THRESHOLDS = {
     "Kyiv": 20,
-    "Krasnodar": 22
+    "Krasnodar": 20
 }
 
 # Подписчики
