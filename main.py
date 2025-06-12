@@ -74,8 +74,3 @@ async def subscribe(email: str):
     return {"message": f"Подписка {email} добавлена"}
 
 
-
-# ПЕРЕКЛЮЧИЛСЯ НА DEV (на новую ветку)
-
-
-
