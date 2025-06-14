@@ -128,6 +128,6 @@ async def unsubscribe(email: str, db: AsyncSession = Depends(get_db)):
 # Команды для сохранения копии в репозитории GitHub:
 
 # git add main.py
-# git commit -m "Обновляем файл в ветке main"
-# git push origin main "Отправляем на GitHub"
+# git commit -m "Обновляем файл в ветке main/dev"
+# git push origin main/dev
 
