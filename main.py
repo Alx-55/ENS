@@ -13,6 +13,7 @@ from models import Base, Subscriber
 
 app = FastAPI()
 
+
 # ===== Создание таблиц и запуск мониторинга =====
 @app.on_event("startup")
 async def startup():
@@ -96,4 +97,18 @@ async def subscribe(email: str, db: AsyncSession = Depends(get_db)):
     db.add(new_sub)
     await db.commit()
     return {"message": f"Подписка {email} добавлена"}
+
+
+# ===== Эндпоинт отписки =====
+@app.delete("/unsubscribe")
+async def unsubscribe(email: str, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Subscriber).where(Subscriber.email == email))
+    subscriber = result.scalar_one_or_none()
+
+    if not subscriber:
+        return {"message": f"Подписчик с email {email} не найден."}
+
+    await db.delete(subscriber)
+    await db.commit()
+    return {"message": f"Подписка {email} удалена."}
 
