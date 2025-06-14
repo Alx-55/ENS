@@ -108,6 +108,7 @@ async def subscribe(email: str, db: AsyncSession = Depends(get_db)):
     await db.commit()
     return {"message": f"Подписка {email} добавлена"}
 
+
 @app.delete("/unsubscribe")
 async def unsubscribe(email: str, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Subscriber).where(Subscriber.email == email))
