@@ -15,7 +15,7 @@ app = FastAPI()
 
 
 # ===== Создание таблиц и запуск мониторинга =====
-@app.on_event("startup")
+@app.on_event("startup")  # Инициализация БД при старте
 async def startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
