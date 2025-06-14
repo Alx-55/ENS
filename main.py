@@ -108,10 +108,25 @@ async def subscribe(email: str, db: AsyncSession = Depends(get_db)):
     await db.commit()
     return {"message": f"Подписка {email} добавлена"}
 
+@app.delete("/unsubscribe")
+async def unsubscribe(email: str, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Subscriber).where(Subscriber.email == email))
+    subscriber = result.scalar_one_or_none()
+
+    if not subscriber:
+        return {"message": f"Подписчик с email {email} не найден."}
+
+    await db.delete(subscriber)
+    await db.commit()
+    return {"message": f"Подписка {email} удалена."}
 
 
 
 # ПЕРЕКЛЮЧИЛСЯ НА DEV (на новую ветку)
 
+# Команды для сохранения копии в репозитории GitHub:
 
+# git add main.py
+# git commit -m "Обновляем файл в ветке main"
+# git push origin main "Отправляем на GitHub"
 
