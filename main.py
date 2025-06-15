@@ -59,8 +59,8 @@ async def send_notifications(city: str, temp: float):
     msg["From"] = "olexandrhai115@gmail.com"
     msg["To"] = ", ".join(emails)
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-        smtp.login("olexandrhai115@gmail.com", "lftcpyhsaejlqtxk")  # пароль приложения
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:  # smtplib.SMTP_SSL("smtp.gmail.com", 465) - это вход на сервер Google
+        smtp.login("olexandrhai115@gmail.com", "lftcpyhsaejlqtxk")  # пароль приложения; этой строкой я авторизуюсь
         smtp.send_message(msg)
 
 
