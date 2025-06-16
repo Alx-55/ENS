@@ -1,5 +1,5 @@
 
-import asyncio
+import asyncio  # обеспечивает асинхронность
 import smtplib
 from email.message import EmailMessage
 
@@ -90,11 +90,17 @@ async def get_db():
         yield session
 
 
+# ==== Эндпоинд отвечающий за главную (домашнюю) страницу моего сайта. Пользователь открывает сайт в брузере (http://localhost:8000/),
+# ==== при этом вызывается эта функция. При выполнении этого запроса в 'docs' по сути я получаю HTML-страницу (Home Page):
+
 @app.get("/", response_class=HTMLResponse)
 async def form_page(request: Request, db: AsyncSession = Depends(get_db)):
-    result = await db.execute(select(Subscriber))
-    subscribers = result.scalars().all()
-    return templates.TemplateResponse("index.html", {"request": request, "subscribers": subscribers})
+
+    result = await db.execute(select(Subscriber))  # этими строками получаем всех подписчиков
+    subscribers = result.scalars().all()           # из таблицы subscribers из БД.
+
+    return templates.TemplateResponse("index.html", {"request": request, "subscribers": subscribers})  # этой строкой передаются данные из
+                                                                                                # файла main.py на страницу-HTML (в index.html).
 
 
 @app.post("/subscribe_form")
