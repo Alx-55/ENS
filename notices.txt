@@ -23,3 +23,7 @@ git checkout main # перехожу на ветку main
 git merge dev
 git push origin main # сохранение копии в GitHub (на ветке main)
 
+
+git checkout dev (переход опять с ветки main на ветку dev)
+
+
