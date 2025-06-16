@@ -9,12 +9,12 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 import httpx  # Асинхронные HTTP-запросы
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from starlette.templating import Jinja2Templates
-
+from starlette.templating import Jinja2Templates  # Шаблонизатор - элемент, обеспечивает связь между содержимым папки tamplates и
+                                                  # главным файлом проекта. Связующее звено между Python-кодом и HTML-шаблонами
 from database import engine, SessionLocal
 from models import Base, Subscriber
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="templates")  # Эта строка говорит FastAPI о том, что все шаблоны будут находиться в папке tamplates
 
 app = FastAPI()
 
