@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Подписка на уведомления</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px; }
+        h2 { color: #333; }
+        form { margin-bottom: 20px; }
+        input[type="email"] { padding: 8px; width: 70%; }
+        input[type="submit"] { padding: 8px 16px; margin-left: 10px; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Подписаться</h2>
+    <form method="post" action="/subscribe_form">
+        <input type="email" name="email" placeholder="Введите email" required>
+        <input type="submit" value="Подписаться">
+    </form>
+
+    <h2>Отписаться</h2>
+    <form method="post" action="/unsubscribe_form">
+        <input type="email" name="email" placeholder="Введите email" required>
+        <input type="submit" value="Отписаться">
+    </form>
+
+    <h2>Список подписчиков</h2>
+    <ul>
+        {% for subscriber in subscribers %}
+            <li>{{ subscriber.email }}</li>
+        {% else %}
+            <li>Пока нет подписчиков</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
