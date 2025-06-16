@@ -5,7 +5,7 @@ from email.message import EmailMessage
 
 from fastapi import FastAPI, Request, Form, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
+
 import httpx  # Асинхронные HTTP-запросы
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
