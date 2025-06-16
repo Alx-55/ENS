@@ -103,7 +103,7 @@ async def form_page(request: Request, db: AsyncSession = Depends(get_db)):
                                                                                                 # файла main.py на страницу-HTML (в index.html).
 
 
-@app.post("/subscribe_form")  # работает на HTML-странице
+@app.post("/subscribe_form")  # работает на HTML-странице (подписка)
 async def subscribe_form(email: str = Form(...), db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Subscriber).where(Subscriber.email == email))
     existing = result.scalar_one_or_none()
@@ -114,7 +114,7 @@ async def subscribe_form(email: str = Form(...), db: AsyncSession = Depends(get_
     return RedirectResponse("/", status_code=303)
 
 
-@app.post("/unsubscribe_form")  # работает на HTML-странице
+@app.post("/unsubscribe_form")  # работает на HTML-странице (отписка)
 async def unsubscribe_form(email: str = Form(...), db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Subscriber).where(Subscriber.email == email))
     subscriber = result.scalar_one_or_none()
@@ -126,7 +126,7 @@ async def unsubscribe_form(email: str = Form(...), db: AsyncSession = Depends(ge
 
 
 # ===== Эндпоинт подписки =====
-@app.post("/subscribe")  # работает в API/Swagger
+@app.post("/subscribe")  # работает в API/Swagger (подписка)
 async def subscribe(email: str, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Subscriber).where(Subscriber.email == email))
     existing = result.scalar_one_or_none()
@@ -141,7 +141,7 @@ async def subscribe(email: str, db: AsyncSession = Depends(get_db)):
 
 
 # ===== Эндпоинт отписки =====
-@app.delete("/unsubscribe")  # работает в API/Swagger
+@app.delete("/unsubscribe")  # работает в API/Swagger (отписка)
 async def unsubscribe(email: str, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Subscriber).where(Subscriber.email == email))
     subscriber = result.scalar_one_or_none()
