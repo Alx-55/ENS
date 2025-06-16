@@ -3,18 +3,24 @@ import asyncio
 import smtplib
 from email.message import EmailMessage
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Request, Form, Depends
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.templating import Jinja2Templates
 import httpx  # Асинхронные HTTP-запросы
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
+from starlette.templating import Jinja2Templates
 
 from database import engine, SessionLocal
 from models import Base, Subscriber
+
+templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 
 
 # ===== Создание таблиц и запуск мониторинга =====
+
 @app.on_event("startup")  # Инициализация БД при старте
 async def startup():
     async with engine.begin() as conn:
@@ -82,6 +88,35 @@ async def weather_monitor():
 async def get_db():
     async with SessionLocal() as session:
         yield session
+
+
+@app.get("/", response_class=HTMLResponse)
+async def form_page(request: Request, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Subscriber))
+    subscribers = result.scalars().all()
+    return templates.TemplateResponse("index.html", {"request": request, "subscribers": subscribers})
+
+
+@app.post("/subscribe_form")
+async def subscribe_form(email: str = Form(...), db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Subscriber).where(Subscriber.email == email))
+    existing = result.scalar_one_or_none()
+
+    if not existing:
+        db.add(Subscriber(email=email))
+        await db.commit()
+    return RedirectResponse("/", status_code=303)
+
+
+@app.post("/unsubscribe_form")
+async def unsubscribe_form(email: str = Form(...), db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Subscriber).where(Subscriber.email == email))
+    subscriber = result.scalar_one_or_none()
+
+    if subscriber:
+        await db.delete(subscriber)
+        await db.commit()
+    return RedirectResponse("/", status_code=303)
 
 
 # ===== Эндпоинт подписки =====
