@@ -18,6 +18,7 @@ templates = Jinja2Templates(directory="templates")  # Эта строка гов
 app = FastAPI()
 
 app.include_router(subscriber_router)  # !! что интересно, это строка должна быть ниже по коду чем строка app = FastAPI()
+                                       # Эта строка подключает маршруты (endpoints) из файла subscriber_routes к основному Fast-приложению.
 
 # ===== Создание таблиц и запуск мониторинга =====
 
