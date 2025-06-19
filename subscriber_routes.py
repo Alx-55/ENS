@@ -1,7 +1,6 @@
 # ====== subscriber_routes.py ======
 # Этот файл содержит все маршруты, связанные с подпиской
 # и работает отдельно от основного main.py, чтобы разделить ответственность.
-# ===== Комментарии проекта сохранены без изменений =====
 
 from fastapi import APIRouter, Form, Depends, Request
 from fastapi.responses import RedirectResponse, HTMLResponse
