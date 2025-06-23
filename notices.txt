@@ -1,4 +1,16 @@
 
+Создал Telegram-бот, token to access the HTTP API: 7696594493:AAE-wlhKckvB2H0DlFYQ5O7nN1fCu_KmUaw (буду использовать в Python-коде)
+имя: HAI_bot  username: Weather_oil_metals_bot
+
+Мой chat_id в Telegram: 5588396810 # Этот ID-пользователя я внесу в pgAdmin в таблицу subscribers:
+UPDATE subscribers SET telegram_chat_id = '123456789' WHERE email = 'your@email.com';
+
+First: Александр
+Last: Хаджинов
+Lang: ru
+
+Рассылать уведомления через Telegram Bot API.
+
 
 Есть ли возможность с сайта index.minfin.com.ua настроить получение уведомления на своё устройство с помощью SMTP-сервера Google в случае обновления данных на странице: Цены на нефть марки Urals?
 
