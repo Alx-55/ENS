@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 Создал Telegram-бот, token to access the HTTP API: ................. (буду использовать в Python-коде)
 имя: HAI_bot  username: Weather_oil_metals_bot
 
@@ -17,6 +18,17 @@ UPDATE subscribers SET telegram_chat_id = '123456789' WHERE email = 'your@email.
 First: .......
 Last: ........
 >>>>>>> f18012c (Update notices.txt)
+=======
+Создал Telegram-бот, token to access the HTTP API - находится в боте BotFather (На моём аккаунте) (буду использовать в Python-коде
+в файле test_telegram_bot.py)
+имя: HAI_bot  username: Weather_oil_metals_bot
+
+Мой chat_id в Telegram - находится в боте userinfobot (На моём аккаунте) # Этот ID-пользователя я внесу в pgAdmin в таблицу subscribers:
+UPDATE subscribers SET telegram_chat_id = '123456789' WHERE email = 'your@email.com', также буду его использовать в тестах в файле test_telegram_bot.py.
+
+First: в боте userinfobot (На моём аккаунте)
+Last: в боте userinfobot (На моём аккаунте)
+>>>>>>> dev
 Lang: ru
 
 Рассылать уведомления через Telegram Bot API.
