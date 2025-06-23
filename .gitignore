@@ -12,7 +12,6 @@ env/
 .vscode/
 
 # Environment variables
-.env
 .env.*
 
 # SQLite database
@@ -55,3 +54,8 @@ node_modules/
 
 # IDEs
 .idea/
+
+.env
+*.pem
+*.key
+*.crt
