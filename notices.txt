@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 Создал Telegram-бот, token to access the HTTP API: ................. (буду использовать в Python-коде)
 имя: HAI_bot  username: Weather_oil_metals_bot
 
